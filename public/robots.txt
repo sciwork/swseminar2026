@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://seminar2026.sciwork.dev
+
+# Sitemaps
+Sitemap: https://seminar2026.sciwork.dev/sitemap.xml
