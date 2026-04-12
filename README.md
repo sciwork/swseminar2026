@@ -1,5 +1,7 @@
 # sciwork 2026 Seminar Repository
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7b9cabd3-abe3-4441-91d1-58b14565a6bf/deploy-status)](https://app.netlify.com/projects/swseminar2026/deploys)
+
 This repository holds the websites for sciwork seminar 2026. The site is hosted at [https://seminar2026.sciwork.dev](https://seminar2026.sciwork.dev) via Netlify. It is built using [Next.js](https://nextjs.org/) bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and [Tailwind CSS](https://tailwindcss.com/).
 
 ## Repository Structure
