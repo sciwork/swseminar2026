@@ -10,10 +10,14 @@ import routes from "@/configurations/routes";
 import SocialLink from "@/components/IconLink";
 import MobileNavigator from "@/components/MenuDrawer";
 import BrandCard from "./BrandCard";
+import Button from "@/components/Button";
+import { REGISTER_URL } from "@/configurations/constants";
 
 const Hero = () => {
   const hasOtherPages =
     routes.filter((route) => !route.disabled && route.path !== "/").length > 0;
+  const eventDate = new Date("2026-06-13T00:09:00-17:00");
+  const currentDate = new Date();
 
   return (
     <div className="tw:w-screen">
@@ -51,9 +55,16 @@ const Hero = () => {
               </div>
             )}
           </div>
-          <div className="tw:flex tw:flex-col tw:items-center tw:justify-center tw:pb-20">
+          <div className="tw:flex tw:flex-col tw:items-center tw:justify-center tw:pb-10">
             <BrandCard />
           </div>
+          { eventDate > currentDate && (
+            <div className="tw:flex tw:items-center tw:justify-center">
+              <Button variant="default" to={REGISTER_URL} target="_blank">
+                Sign Up Now!
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

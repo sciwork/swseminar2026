@@ -159,6 +159,9 @@ const BrandCard = () => {
           >
             June 13, 2026
           </div>
+          <div className="tw:text-xl">
+            National Yang Ming Chiao Tung University
+          </div>
         </div>
       </div>
     </div>
