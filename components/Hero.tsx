@@ -16,7 +16,7 @@ import { REGISTER_URL } from "@/configurations/constants";
 const Hero = () => {
   const hasOtherPages =
     routes.filter((route) => !route.disabled && route.path !== "/").length > 0;
-  const eventDate = new Date("2026-06-13T00:09:00-17:00");
+  const eventDate = new Date("2026-06-13T09:00:00+08:00");
   const currentDate = new Date();
 
   return (

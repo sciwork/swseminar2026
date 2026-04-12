@@ -16,6 +16,7 @@ const BrandCard = () => {
   const seminarRef = useRef<HTMLSpanElement>(null);
   const yearRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const dateRef = useRef<HTMLDivElement>(null);
+  const venueRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let killed = false;
@@ -33,7 +34,7 @@ const BrandCard = () => {
         scale: 0.97,
         filter: "blur(10px)",
       })
-        .set([brandRef.current, seminarRef.current, dateRef.current], {
+        .set([brandRef.current, seminarRef.current, dateRef.current, venueRef.current], {
           autoAlpha: 0,
           y: 10,
         })
@@ -74,7 +75,8 @@ const BrandCard = () => {
           },
           0.7,
         )
-        .to(dateRef.current, { autoAlpha: 1, y: 0, duration: 0.45 }, 1.1);
+        .to(dateRef.current, { autoAlpha: 1, y: 0, duration: 0.45 }, 1.1)
+        .to(venueRef.current, { autoAlpha: 1, y: 0, duration: 0.45 }, 1.1);
 
       return () => {
         tl.kill();
@@ -157,9 +159,12 @@ const BrandCard = () => {
             ref={dateRef}
             className="tw:mt-4 tw:block tw:text-2xl tw:font-medium tw:tracking-tight"
           >
-            June 13, 2026
+            June 13
           </div>
-          <div className="tw:text-xl">
+          <div
+            ref={venueRef}
+            className="tw:mt-2 tw:block tw:text-xl tw:font-medium tw:tracking-tight"
+          >
             National Yang Ming Chiao Tung University
           </div>
         </div>
