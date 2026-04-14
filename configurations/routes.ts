@@ -1,5 +1,10 @@
 const routes = [
   {
+    path: "/cfp",
+    name: "Call for Proposal",
+    disabled: false,
+  },
+  {
     path: "/program",
     name: "Program",
     disabled: true,
