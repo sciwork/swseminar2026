@@ -1,58 +1,92 @@
-<a name="jugg-ai"></a>
+<a name="laurence-graph"></a>
 
 <div style={{ textAlign: "center" }}>
   <img
-    src="./Website_JUGG.png"
-    width={800}
+    src="./Website_Laurence.png"
+    width={0}
     style={{ maxWidth: "100%", height: "auto", display: "inline-block" }}
   />
 </div>
 
-你是否曾想過：「**如果我能清楚描述想法，AI 是否就能做出產品？**」
-讓我們將模糊想法轉換成清晰可執行的規格，使用 AI 開發出你預期的功能！
+ 
+# 突破 SQL 查詢極限：用 Graph 思維處理複雜關聯與多跳推論
 
-- 講者：JUGG，派森科技創辦人，具18年經驗之敏捷教練與產品顧問。
-- 語言：中文
-- 時間：3.5 小時
+很多工程團隊都曾遇過這類問題：
+
+- JOIN 越寫越長，query 幾乎無法維護
+- 「找關聯」的需求開始出現多跳 traversal
+- recommendation、權限繼承、dependency、fraud detection 等問題很難用 table 直觀表達
+- application layer 出現了「查資料 → 組關係 → 再計算」的邏輯
+
+這類問題的共同點是：
+
+> 問題的核心其實是「關係」，但我們仍然被迫用表格思維處理。
+
+本 workshop 將透過 Graph Analysis 的方式，重新理解這類問題。
+
+## 講者: Laurence Chen
+
+IT 顧問，專注協助企業導入 Modern Data Stack。
+
+### 現職：
+  - [REPLWARE](https://replware.dev) CEO
+  - [台灣 Clojure 社群](https://clojure.tw/) 線下活動主辦人
+  - [Taipei dbt Meetup 社群](https://medium.com/dbt-local-taiwan) 線下活動主辦人
+### 著作：
+  - [從試算表到資料平台：重構資料工程的技術與團隊](https://replware.dev/mds)
 
 ---
 
-## 學習目標
+##  學習目標
 
-- 定義問題背景，釐清真實痛點。
-- 建立行動與價值關聯，形成策略脈絡。
-- 找出需求動機與角色，轉為可行故事。
-- 將模糊需求轉為具體可驗證的條件。
-- 生成準確且具上下文的規格文件。
-- 以 AI IDE 視覺化需求，驗證可行性。
+在 4 小時內，讓參與者建立一個可帶走的認知框架，而不是只學會語法：
+- 理解 Graph 為何存在：它解決的是哪一類 SQL / application 層難以處理的問題
+- 建立 Graph 思維模型：將資料理解為「節點 + 關係 + 路徑」
+- 能閱讀與撰寫基本 Cypher 查詢，並理解多跳查詢的語意
+- 理解 in-database 計算的架構意義
+- 能解釋一個 graph-based recommendation 的「推論過程」
 
 ---
 
 ## 課程內容
 
-- 使用 AI 工具定義產品目標和規格
-  - Impact Mapping：透過目標、價值與角色的連結，建立可實驗的產品策略方向。
-  - User Story：探索使用者角色與需求背後的動機，將問題轉化為以使用者價值為中心的可執行故事。
-  - Acceptance Criteria：給定明確條件和需求範圍，使工作能依據規格地正確執行。
+課程以 MovieLens 電影資料集作為實作案例，但重點不在 recommendation system 本身，而是：
 
-- 實際體驗「痛點分析 → 需求釐清 → PRD 撰寫 → Prototype 生成」的完整需求制定流程。
+- 如何用 Graph model 表達複雜關聯
+- 如何進行多跳查詢
+- 如何直接在 database 內執行 graph computation
+- 如何讓推論結果具備可解釋性
+
+Workshop 採漸進式設計，每個單元只引入一個新概念，讓第一次接觸 Graph 的工程師也能跟上。
 
 ---
 
 ## 事前準備
 
-- 筆記型電腦
-- GenAI 工具：Gemini / ChatGPT / Claude / Grow 任一
-- AI IDE：Cursor / Claude Code 任一
+### 必要準備
+- 安裝好 Ladybug DB CLI
+- 攜帶可操作的筆電
+- 能使用 terminal 執行基本指令
+
+### 建議背景
+建議有以下任一經驗更可以快速上手：
+- 使用過資料庫進行資料分析
+- 寫過 SQL query
+- 有 backend / data engineering / analytics 其中一種開發經驗
+
+### 不需要的背景
+- 不需要 Graph theory 背景
+- 不需要演算法知識
+- 不需要使用過 graph database
 
 ---
 
-<a name="steve-gns3"></a>
+<a name="jiang-workflow"></a>
 
 <div style={{ textAlign: "center" }}>
   <img
-    src="./Website_Steve.png"
-    width={800}
+    src="./Website_Jiang.png"
+    width={0}
     style={{
       display: "block",
       margin: "0 auto",
@@ -62,36 +96,56 @@
   />
 </div>
 
-你是否能想像：「**只靠一台電腦就能搭建網路環境？**」
-透過 GNS3，你不需昂貴設備或佈線，只要拖拉元件即可建立模型，快速理解網路的真實運作。
+# 現代流程引擎工作坊：簡化跨服務、多步驟流程開發
 
-- 講者：Steve Chan，網路軟體開發者。
-- 語言：中文
-- 時間：3 小時
+你是否曾感到痛苦：「跨服務任務一多，重試邏輯與狀態轉移就寫到崩潰？」 讓我們停止自行維護脆弱的流程，利用現代化流程引擎，將模糊的步驟轉化為強韌的自動化工作流！
+
+## 講者：Jiang
+
+開發過前端後端，維運過雲端地端，不想重複痛苦，希望簡單明白的軟工仔。
+
+### 現職
+
+- 軟體工程師
 
 ---
 
 ## 學習目標
 
-- 了解 GNS3 的運作方式與基本使用情境。
-- 建立基本網路拓樸並理解節點間的連線關係。
-- 利用封包擷取工具觀察真實封包流動。
-- 設計跨網段的虛擬網路架構並驗證其運作。
-- 將模擬環境與真實網路串接，應用於開發、測試與 Demo。
+- 識別出傳統自行設計的「狀態管理」與「異常處理邏輯」的維運問題。
+- 了解流程引擎的技術演進與創新，解決現代跨服務系統難題。
+- 學會解耦流程控制與業務邏輯，實現更高品質、易於擴展的架構。
+- 透過可視化追蹤工具，快速定位錯誤，讓 Bug 定位不再大海撈針。
 
 ---
 
 ## 課程內容
 
-- 環境安裝：介紹 GNS3 的運作方式與常用元件，並完成安裝與基本設定。
-- 網路基礎：理解基礎通訊行為，認識 ARP、IP 配置與基本轉送流程。
-- 拓樸設計：建立單一網段拓樸並完成 IP 配置，熟悉拖曳節點、連線、調整參數的操作流程。
-- 封包觀察：分析封包如何流動，熟悉如何利用封包觀察驗證拓樸是否符合預期。
-- 進階連接：示範 GNS3 與實體網路的整合方式，探討可應用於測試、開發與 Demo 的進階情境。
+現代 Web 服務常見各種背景任務需求。系統運行的初期，工程師經常以工作排程器或 crontab 做簡易的設定；隨著系統演進，模組跟任務的數量和複雜性的提升，工程師經常面臨以下難題：
+
+- 排程設定散落在眾多機器，管理困難
+- 任務間存在依賴性，關係複雜難以釐清
+- 任務進度缺乏觀測性
+
+在這個 workshop 裡，課程將以 Temporal 為例，帶你掌握現代流程引擎的觀念思維：
+
+- 核心思維轉變：掌握流程引擎的運作原理與設計模式，取代硬編且散落的程式邏輯
+- 編排式開發實戰：體驗開發範式的轉變，動手實作「流程編排 (Orchestration)」達成架構簡化
+- 從實作回歸理論：不僅是串接工具，更要掌握分散式架構基礎，以及自動化重試與補償機制，建立起高韌性的系統
+
+課程重心放在流程的策略和設計，實際可應用於不同的產業和場景。
 
 ---
 
 ## 事前準備
 
-- 筆記型電腦：Windows 和 macOS 皆可。
-- GNS3：確認 Docker 或 VM 支援，macOS 建議事先確認是否能不透過 VM 使用 local server。
+### 必要準備
+
+- 筆記型電腦
+
+### 建議背景
+
+現場範例僅提供 Python / JavaScript，流程引擎普遍支持多語言：
+
+- 寫過 Python 或 JavaScript
+- 有任務排程 / queue、workflow 的開發經驗

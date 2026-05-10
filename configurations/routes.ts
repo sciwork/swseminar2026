@@ -12,16 +12,16 @@ const routes = [
   {
     path: "/workshops",
     name: "Workshops",
-    disabled: true,
+    disabled: false,
     children: [
       {
-        path: "/workshops#jugg-ai",
-        name: "AI 需求工作坊",
+        path: "/workshops#laurence-graph",
+        name: "突破 SQL 查詢極限：用 Graph 思維處理複雜關聯與多跳推論",
         disabled: false,
       },
       {
-        path: "/workshops#steve-gns3",
-        name: "技術工作坊 - GNS3 介紹",
+        path: "/workshops#jiang-workflow",
+        name: "現代流程引擎工作坊：簡化跨服務、多步驟流程開發",
         disabled: false,
       },
     ],
