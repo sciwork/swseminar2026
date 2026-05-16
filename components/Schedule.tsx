@@ -5,7 +5,7 @@ import DayLink from "@/components/DayLink";
 import TalkInfoCard from "@/components/TalkInfoCard";
 import { DayType } from "@/models/Schedule";
 import dayjs from "@/utils/day";
-import { isTablet } from "@/utils/device";
+import { isDesktop } from "@/utils/device";
 import { getAggregatedTalksByTimeSlot } from "@/utils/schedule";
 
 type Props = {
@@ -14,11 +14,11 @@ type Props = {
 };
 
 const Schedule = ({ days, currentDay }: Props) => {
-  const [tablet, setTablet] = useState(isTablet());
+  const [desktop, setDesktop] = useState(isDesktop());
 
   useEffect(() => {
     const handleResize = () => {
-      setTablet(isTablet());
+      setDesktop(isDesktop());
     };
 
     window.addEventListener("resize", handleResize);
@@ -53,9 +53,9 @@ const Schedule = ({ days, currentDay }: Props) => {
             <div
               className="tw:grid tw:gap-4"
               style={{
-                gridTemplateColumns: tablet
-                  ? "repeat(1, minmax(0, 1fr))"
-                  : `repeat(${Object.keys(timeSlot.roomTalks).length}, minmax(0, 1fr))`,
+                gridTemplateColumns: desktop
+                  ? `repeat(${Object.keys(timeSlot.roomTalks).length}, minmax(0, 1fr))`
+                  : "repeat(1, minmax(0, 1fr))",
               }}
             >
               {Object.keys(timeSlot.roomTalks).map((roomName) => (
@@ -63,7 +63,7 @@ const Schedule = ({ days, currentDay }: Props) => {
                   className="tw:flex tw:flex-col tw:gap-4"
                   key={`timeslot-${timeSlot.date.format()}-${roomName}`}
                 >
-                  <div className="tw:hidden tw:text-center tw:font-yk tw:tablet:block">
+                  <div className="tw:hidden tw:text-center tw:font-yk tw:desktop:block">
                     {roomName}
                   </div>
                   {timeSlot.roomTalks[roomName].map((talk) => (
