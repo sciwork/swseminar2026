@@ -7,7 +7,7 @@ const routes = [
   {
     path: "/program",
     name: "Program",
-    disabled: true,
+    disabled: false,
   },
   {
     path: "/workshops",
