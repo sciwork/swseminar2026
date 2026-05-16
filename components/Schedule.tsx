@@ -57,7 +57,7 @@ const Schedule = ({ days, currentDay }: Props) => {
                   : `repeat(${Object.keys(timeSlot.roomTalks).length}, minmax(0, 1fr))`,
               }}
             >
-              {Object.keys(timeSlot.roomTalks).map((roomName, roomIndex) => (
+              {Object.keys(timeSlot.roomTalks).map((roomName) => (
                 <div
                   className="tw:flex tw:flex-col tw:gap-4"
                   key={`timeslot-${timeSlot.date.format()}-${roomName}`}
@@ -65,7 +65,7 @@ const Schedule = ({ days, currentDay }: Props) => {
                   <div className="tw:hidden tw:text-center tw:font-yk tw:tablet:block">
                     {roomName}
                   </div>
-                  {timeSlot.roomTalks[roomName].map((talk, talkIndex) => (
+                  {timeSlot.roomTalks[roomName].map((talk) => (
                     <TalkInfoCard
                       key={talk.id}
                       className="tw:flex-1"
