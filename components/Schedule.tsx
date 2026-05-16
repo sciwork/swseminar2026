@@ -33,15 +33,16 @@ const Schedule = ({ days, currentDay }: Props) => {
   return (
     <>
       <div className="tw:mb-5 tw:flex tw:justify-center tw:gap-8 tw:tablet:mb-10">
-        {days.map((day) => (
-          <DayLink
-            key={day.date.format("MM-DD")}
-            to={`/program?day=${day.date.format("YYYY-MM-DD")}`}
-            active={day.date.isSame(currentDay, "day")}
-          >
-            {day.date.format("ddd, MM/DD")}
-          </DayLink>
-        ))}
+        {days.length > 1 &&
+          days.map((day) => (
+            <DayLink
+              key={day.date.format("MM-DD")}
+              to={`/program?day=${day.date.format("YYYY-MM-DD")}`}
+              active={day.date.isSame(currentDay, "day")}
+            >
+              {day.date.format("ddd, MM/DD")}
+            </DayLink>
+          ))}
       </div>
       <div className="tw:flex tw:flex-col tw:gap-6 tw:tablet:gap-8">
         {timeSlots.map((timeSlot) => (
