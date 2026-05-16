@@ -8,6 +8,8 @@ const floorByDuration = (time: dayjs.Dayjs, d: number) => {
 };
 
 export const getAggregatedTalksByTimeSlot = (roomTalks: RoomTalkMapType) => {
+  const roomNames = Object.keys(roomTalks).sort();
+
   const aggregatedDateTalksMap: {
     [key: string]: TalkType[];
   } = {};
@@ -29,9 +31,22 @@ export const getAggregatedTalksByTimeSlot = (roomTalks: RoomTalkMapType) => {
     const talks = aggregatedDateTalksMap[key].toSorted((a, b) =>
       a.date.isBefore(b.date) ? -1 : 1,
     );
+
+    const aggregatedRoomTalksMap: {
+      [key: string]: TalkType[];
+    } = {};
+
+    roomNames.forEach((roomName) => {
+      aggregatedRoomTalksMap[roomName] = [];
+    });
+
+    talks.forEach((talk) => {
+      aggregatedRoomTalksMap[talk.room].push(talk);
+    });
+
     return {
       date: talks[0].date,
-      talks,
+      roomTalks: aggregatedRoomTalksMap,
     };
   });
   // sort by date asc
