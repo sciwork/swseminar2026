@@ -1,7 +1,7 @@
 import { RoomTalkMapType, TalkType } from "@/models/Schedule";
 import dayjs from "@/utils/day";
 
-const duration = 30;
+const duration = 10;
 
 const floorByDuration = (time: dayjs.Dayjs, d: number) => {
   return time.subtract(time.minute() % d, "minute");
