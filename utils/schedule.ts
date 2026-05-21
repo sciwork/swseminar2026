@@ -8,7 +8,7 @@ const floorByDuration = (time: dayjs.Dayjs, d: number) => {
 };
 
 export const getAggregatedTalksByTimeSlot = (roomTalks: RoomTalkMapType) => {
-  const roomNames = Object.keys(roomTalks).sort();
+  const roomNames = Object.keys(roomTalks);
 
   const aggregatedDateTalksMap: {
     [key: string]: TalkType[];
