@@ -51,7 +51,7 @@ const Schedule = ({ days, currentDay }: Props) => {
               {timeSlot.date.format("HH:mm")}
             </div>
             <div
-              className="tw:grid tw:gap-4"
+              className="tw:hidden tw:gap-4 tw:desktop:grid"
               style={{
                 gridTemplateColumns: desktop
                   ? `repeat(${Object.keys(timeSlot.roomTalks).length}, minmax(0, 1fr))`
@@ -75,6 +75,15 @@ const Schedule = ({ days, currentDay }: Props) => {
                     />
                   ))}
                 </div>
+              ))}
+            </div>
+            <div className="tw:grid tw:grid-cols-1 tw:gap-4 tw:desktop:hidden">
+              {timeSlot.talks.map((talk) => (
+                <TalkInfoCard
+                  key={talk.id}
+                  variant={talk.type === "Non-talk" ? "general" : "booths"}
+                  talk={talk}
+                />
               ))}
             </div>
           </Fragment>

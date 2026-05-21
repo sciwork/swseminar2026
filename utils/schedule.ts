@@ -1,3 +1,4 @@
+import { M_PLUS_1 } from "next/font/google";
 import { RoomTalkMapType, TalkType } from "@/models/Schedule";
 import dayjs from "@/utils/day";
 
@@ -28,9 +29,20 @@ export const getAggregatedTalksByTimeSlot = (roomTalks: RoomTalkMapType) => {
 
   // to array
   const aggregatedTalks = Object.keys(aggregatedDateTalksMap).map((key) => {
-    const talks = aggregatedDateTalksMap[key].toSorted((a, b) =>
-      a.date.isBefore(b.date) ? -1 : 1,
-    );
+    const talks = aggregatedDateTalksMap[key].toSorted((a, b) => {
+      // if talk a occurs before b, a should be placed before b
+      if (a.date.isBefore(b.date)) {
+        return -1;
+      }
+      // if talk a and b have same start time, sort by room order
+      if (a.date.isSame(b.date)) {
+        if (roomNames.indexOf(a.room) < roomNames.indexOf(b.room)) {
+          return -1;
+        }
+      }
+
+      return 1;
+    });
 
     const aggregatedRoomTalksMap: {
       [key: string]: TalkType[];
@@ -46,6 +58,7 @@ export const getAggregatedTalksByTimeSlot = (roomTalks: RoomTalkMapType) => {
 
     return {
       date: talks[0].date,
+      talks,
       roomTalks: aggregatedRoomTalksMap,
     };
   });
