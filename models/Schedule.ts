@@ -166,7 +166,9 @@ class Schedule {
         persons,
       } = talks;
       const [durationHour, durationMinute] = duration.split(":");
-      const startDate = dayjs(`2023-01-01T${start}:00+08:00`);
+      const startDate = dayjs(
+        `${dayjs(date).format("YYYY-MM-DD")}T${start}:00+08:00`,
+      );
       return {
         id,
         logo,
