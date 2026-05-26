@@ -29,6 +29,7 @@ const Schedule = ({ days, currentDay }: Props) => {
 
   const day = days.find((day) => day.date.isSame(currentDay, "day"));
   if (!day) return null;
+  const roomNames = Object.keys(day.rooms);
   const timeSlots = getAggregatedTalksByTimeSlot(day.rooms);
   return (
     <>
@@ -45,6 +46,23 @@ const Schedule = ({ days, currentDay }: Props) => {
           ))}
       </div>
       <div className="tw:flex tw:flex-col tw:gap-6 tw:tablet:gap-8">
+        <div
+          className="tw:sticky tw:top-0 tw:z-10 tw:hidden tw:gap-4 tw:bg-white/90 tw:py-3 tw:backdrop-blur-sm tw:desktop:grid"
+          style={{
+            gridTemplateColumns: desktop
+              ? `repeat(${roomNames.length}, minmax(0, 1fr))`
+              : "repeat(1, minmax(0, 1fr))",
+          }}
+        >
+          {roomNames.map((roomName) => (
+            <div
+              className="tw:text-center tw:font-yk"
+              key={`room-header-${roomName}`}
+            >
+              {roomName}
+            </div>
+          ))}
+        </div>
         {timeSlots.map((timeSlot) => (
           <Fragment key={`timeslot-${timeSlot.date.format()}`}>
             <div className="tw:text-center tw:font-yk tw:text-2xl tw:tablet:text-3xl">
@@ -54,18 +72,15 @@ const Schedule = ({ days, currentDay }: Props) => {
               className="tw:hidden tw:gap-4 tw:desktop:grid"
               style={{
                 gridTemplateColumns: desktop
-                  ? `repeat(${Object.keys(timeSlot.roomTalks).length}, minmax(0, 1fr))`
+                  ? `repeat(${roomNames.length}, minmax(0, 1fr))`
                   : "repeat(1, minmax(0, 1fr))",
               }}
             >
-              {Object.keys(timeSlot.roomTalks).map((roomName) => (
+              {roomNames.map((roomName) => (
                 <div
                   className="tw:flex tw:flex-col tw:gap-4"
                   key={`timeslot-${timeSlot.date.format()}-${roomName}`}
                 >
-                  <div className="tw:hidden tw:text-center tw:font-yk tw:desktop:block">
-                    {roomName}
-                  </div>
                   {timeSlot.roomTalks[roomName].map((talk) => (
                     <TalkInfoCard
                       key={talk.id}
