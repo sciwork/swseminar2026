@@ -70,7 +70,7 @@ const Schedule = ({ days, currentDay }: Props) => {
                     <TalkInfoCard
                       key={talk.id}
                       className="tw:flex-1"
-                      variant={talk.type === "Non-talk" ? "general" : "booths"}
+                      variant={talk.type}
                       talk={talk}
                     />
                   ))}
@@ -81,7 +81,7 @@ const Schedule = ({ days, currentDay }: Props) => {
               {timeSlot.talks.map((talk) => (
                 <TalkInfoCard
                   key={talk.id}
-                  variant={talk.type === "Non-talk" ? "general" : "booths"}
+                  variant={talk.type}
                   talk={talk}
                 />
               ))}
