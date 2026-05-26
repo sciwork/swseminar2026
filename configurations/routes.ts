@@ -2,7 +2,7 @@ const routes = [
   {
     path: "/cfp",
     name: "Call for Proposal",
-    disabled: false,
+    disabled: true,
   },
   {
     path: "/program",
@@ -29,34 +29,7 @@ const routes = [
   {
     path: "/projects",
     name: "Projects",
-    disabled: true,
-    children: [
-      {
-        path: "/projects#modmesh",
-        name: "modmesh",
-        disabled: false,
-      },
-      {
-        path: "/projects#python-official-document-translation",
-        name: "Python Official Document Translation",
-        disabled: false,
-      },
-      {
-        path: "/projects#sciwork-portal",
-        name: "sciwork Portal",
-        disabled: false,
-      },
-      {
-        path: "/projects#utensor",
-        name: "uTensor",
-        disabled: false,
-      },
-      {
-        path: "/projects#cytnx",
-        name: "Cytnx",
-        disabled: false,
-      },
-    ],
+    disabled: false,
   },
   {
     path: "/sponsor",
@@ -66,7 +39,7 @@ const routes = [
   {
     path: "/venue",
     name: "Venue",
-    disabled: true,
+    disabled: false,
   },
   {
     path: "/about",
