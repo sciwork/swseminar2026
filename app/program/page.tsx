@@ -9,6 +9,18 @@ import { DayType } from "@/models/Schedule";
 import { getSchedule } from "@/utils/apis";
 import dayjs from "@/utils/day";
 
+const getTimeSlotMinutes = (timeslotDuration: string | undefined) => {
+  if (!timeslotDuration) {
+    return 10;
+  }
+
+  const [hours, minutes] = timeslotDuration.split(":").map((value) => {
+    return parseInt(value, 10);
+  });
+
+  return hours * 60 + minutes;
+};
+
 const getCurrentDay = (
   days: DayType[],
   searchDay: string | null,
@@ -33,6 +45,7 @@ const Page = () => {
   const searchParams = useSearchParams();
   const searchDay = searchParams.get("day");
   const [days, setDays] = useState<DayType[]>([]);
+  const [timeSlotMinutes, setTimeSlotMinutes] = useState(10);
   const [currentDay, setCurrentDay] = useState<dayjs.Dayjs | null>(null);
   const [isLoading, setLoading] = useState(true);
 
@@ -40,6 +53,9 @@ const Page = () => {
     async function fetchSchedule() {
       const schedule = await getSchedule();
       const newDays = schedule?.conference?.days ?? [];
+      setTimeSlotMinutes(
+        getTimeSlotMinutes(schedule?.conference?.timeslotDuration),
+      );
       setDays(newDays);
       setCurrentDay(getCurrentDay(newDays, searchDay));
       setLoading(false);
@@ -57,7 +73,11 @@ const Page = () => {
       {days.length === 0 ? (
         <ToBeAnnounced />
       ) : (
-        <ScheduleComponent days={days} currentDay={currentDay} />
+        <ScheduleComponent
+          days={days}
+          currentDay={currentDay}
+          timeSlotMinutes={timeSlotMinutes}
+        />
       )}
     </Article>
   );
