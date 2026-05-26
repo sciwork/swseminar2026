@@ -10,6 +10,9 @@ type Props = {
 
 const TalkInfoCard = ({ className, variant, talk, ...props }: Props) => {
   const durationInMinutes = talk.end.diff(talk.start, "minute");
+  const shouldShowMoreButton =
+    talk.type === "Talk" || talk.type === "Workshop";
+  const shouldShowAbstract = talk.type !== "Non-talk";
 
   return (
     <div
@@ -23,75 +26,79 @@ const TalkInfoCard = ({ className, variant, talk, ...props }: Props) => {
       )}
       {...props}
     >
-      <div className="tw:mb-1 tw:flex tw:flex-wrap tw:items-center tw:gap-2">
-        <div
-          className={clsx(
-            "tw:font-yk tw:text-2xl tw:leading-none tw:font-medium",
-            variant === "Non-talk" && "tw:text-rose-800",
-            variant === "Talk" && "tw:text-indigo-800",
-            variant === "Workshop" && "tw:text-purple-800",
-            variant === "Sprint" && "tw:text-pink-800",
-          )}
-        >
-          {talk.title}
-        </div>
-        {talk.room && (
+      <div className="tw:desktop:sticky tw:desktop:top-16">
+        <div className="tw:mb-1 tw:flex tw:flex-wrap tw:items-center tw:gap-2">
           <div
             className={clsx(
-              "tw:-mt-1 tw:rounded-lg tw:border tw:px-1.5 tw:py-1 tw:text-xs tw:uppercase",
-              variant === "Non-talk" &&
-                "tw:border-rose-500 tw:bg-rose-100 tw:text-rose-700",
-              variant === "Talk" &&
-                "tw:border-indigo-500 tw:bg-indigo-100 tw:text-indigo-700",
-              variant === "Workshop" &&
-                "tw:border-purple-500 tw:bg-purple-100 tw:text-purple-700",
-              variant === "Sprint" &&
-                "tw:border-pink-500 tw:bg-pink-100 tw:text-pink-700",
+              "tw:font-yk tw:text-2xl tw:font-medium",
+              variant === "Non-talk" && "tw:text-rose-800",
+              variant === "Talk" && "tw:text-indigo-800",
+              variant === "Workshop" && "tw:text-purple-800",
+              variant === "Sprint" && "tw:text-pink-800",
             )}
           >
-            {talk.room}
+            {talk.title}
           </div>
-        )}
-      </div>
-      <div
-        className={clsx(
-          "tw:text-sm",
-          variant === "Non-talk" && "tw:text-rose-600",
-          variant === "Talk" && "tw:text-indigo-600",
-          variant === "Workshop" && "tw:text-purple-600",
-          variant === "Sprint" && "tw:text-pink-600",
-        )}
-      >
-        {talk?.persons?.map((person) => person.publicName).join(", ")}
-      </div>
-      <div
-        className={clsx(
-          "tw:text-sm",
-          variant === "Non-talk" && "tw:text-rose-400",
-          variant === "Talk" && "tw:text-indigo-400",
-          variant === "Workshop" && "tw:text-purple-400",
-          variant === "Sprint" && "tw:text-pink-400",
-        )}
-      >
-        {talk.start.format("HH:mm")} - {talk.end.format("HH:mm")} ({durationInMinutes} min)
-      </div>
-      {talk.abstract && (
+          {talk.room && (
+            <div
+              className={clsx(
+                "tw:-mt-1 tw:rounded-lg tw:border tw:px-1.5 tw:py-1 tw:text-xs tw:uppercase",
+                variant === "Non-talk" &&
+                  "tw:border-rose-500 tw:bg-rose-100 tw:text-rose-700",
+                variant === "Talk" &&
+                  "tw:border-indigo-500 tw:bg-indigo-100 tw:text-indigo-700",
+                variant === "Workshop" &&
+                  "tw:border-purple-500 tw:bg-purple-100 tw:text-purple-700",
+                variant === "Sprint" &&
+                  "tw:border-pink-500 tw:bg-pink-100 tw:text-pink-700",
+              )}
+            >
+              {talk.room}
+            </div>
+          )}
+        </div>
         <div
           className={clsx(
-            "tw:mt-2 tw:line-clamp-3 tw:tablet:mt-4",
-            variant === "Non-talk" && "tw:text-rose-700",
-            variant === "Talk" && "tw:text-indigo-700",
-            variant === "Workshop" && "tw:text-purple-700",
-            variant === "Sprint" && "tw:text-pink-700",
+            "tw:text-sm",
+            variant === "Non-talk" && "tw:text-rose-600",
+            variant === "Talk" && "tw:text-indigo-600",
+            variant === "Workshop" && "tw:text-purple-600",
+            variant === "Sprint" && "tw:text-pink-600",
           )}
         >
-          {talk.abstract}
+          {talk?.persons?.map((person) => person.publicName).join(", ")}
         </div>
-      )}
-      <div className="tw:mt-4">
-        <Button btnSize="small" to={talk.url} target="_blank">
-          More
-        </Button>
+        <div
+          className={clsx(
+            "tw:text-sm",
+            variant === "Non-talk" && "tw:text-rose-400",
+            variant === "Talk" && "tw:text-indigo-400",
+            variant === "Workshop" && "tw:text-purple-400",
+            variant === "Sprint" && "tw:text-pink-400",
+          )}
+        >
+          {talk.start.format("HH:mm")} - {talk.end.format("HH:mm")} ({durationInMinutes} min)
+        </div>
+        {shouldShowAbstract && talk.abstract && (
+          <div
+            className={clsx(
+              "tw:mt-2 tw:line-clamp-3 tw:tablet:mt-4",
+              variant === "Non-talk" && "tw:text-rose-700",
+              variant === "Talk" && "tw:text-indigo-700",
+              variant === "Workshop" && "tw:text-purple-700",
+              variant === "Sprint" && "tw:text-pink-700",
+            )}
+          >
+            {talk.abstract}
+          </div>
+        )}
+        {shouldShowMoreButton && (
+          <div className="tw:mt-4">
+            <Button btnSize="small" to={talk.url} target="_blank">
+              More
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
