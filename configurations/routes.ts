@@ -44,7 +44,7 @@ const routes = [
   {
     path: "/about",
     name: "Team",
-    disabled: true,
+    disabled: false,
   },
   {
     path: "/code-of-conduct",
