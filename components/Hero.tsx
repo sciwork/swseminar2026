@@ -59,9 +59,12 @@ const Hero = () => {
             <BrandCard />
           </div>
           { eventDate > currentDate && (
-            <div className="tw:flex tw:items-center tw:justify-center tw:pb-5">
+            <div className="tw:flex tw:items-center tw:justify-center tw:gap-4 tw:pb-5">
               <Button variant="default" to={REGISTER_URL} target="_blank">
                 Sign Up Now!
+              </Button>
+              <Button variant="action" to="/program">
+                Check Out Programs
               </Button>
             </div>
           )}
